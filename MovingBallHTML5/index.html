@@ -1,0 +1,53 @@
+<!-- http://coddicted.com/a-moving-ball-with-html5/ -->
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Moving Ball</title>
+  <script>
+    function getRandomInt(max, min){
+      return Math.floor(Math.random() * (+max - +min)) + +min;
+    } 
+  
+    window.onload = function(){
+    var canvas = document.getElementById("my_canvas");
+    c = canvas.getContext("2d");
+    TWO_PI = 2 * Math.PI;
+    radius = 5;
+    var randomX =getRandomInt(0,1);
+    var randomY =getRandomInt(0,1);
+  //  document.write("Random Number Generated : " + random ); 
+  
+    var posX = getRandomInt(0, canvas.width);
+    var posY = getRandomInt(0, canvas.height);
+    var incX = randomX == 0 ? -1 : 1;
+    var incY = randomY == 0 ? -1 : 1;
+    setInterval(function(){
+      c.fillStyle = "rgba(0,0,0,0.1)";
+      c.fillRect(0, 0, canvas.width, canvas.height);
+  
+      if(posX + radius > canvas.width || (posX < radius && incX == -1)){
+        incX = -incX;
+      }
+      if(posY + radius > canvas.height || (posY < radius && incY == -1)){
+        incY = -incY;
+      }
+      posX += incX;
+      posY += incY;
+      c.fillStyle = "white";
+      c.beginPath();
+      c.arc(posX,posY,radius,0,TWO_PI,false);
+      c.fill();
+ 
+    }, 10);
+    };
+  </script>
+</head>
+ 
+<body>
+  Hello World!
+<canvas id="my_canvas" width="300" height="300">Get Chrome...</canvas>
+  </body>
+ 
+</html>
