@@ -35,3 +35,7 @@ build/
 
 # maven
 target/
+
+# IntelliJ settings
+.idea
+*.iml
